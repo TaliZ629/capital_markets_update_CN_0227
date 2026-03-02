@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>资本市场周报 — 2026年2月27日</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-mid: #2a3240;
+    --ink-light: #5c6880;
+    --paper: #f5f2eb;
+    --paper-warm: #ede9df;
+    --rule: #c8c0b0;
+    --accent: #c0392b;
+    --accent2: #1a5276;
+    --green: #1e6b45;
+    --red: #b03a2e;
+    --gold: #b7860d;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Syne', 'PingFang SC', 'Microsoft YaHei', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead { border-bottom: 3px solid var(--ink); padding: 2rem 4rem 0.3rem; position: relative; overflow: visible; }
+  .masthead::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, var(--rule) 39px, var(--rule) 40px); opacity: 0.25; pointer-events: none; }
+  .masthead-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; position: relative; }
+  .masthead-left { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); line-height: 1.8; }
+  .masthead-title { text-align: center; }
+  .masthead-title h1 { font-family: 'Playfair Display', 'PingFang SC', serif; font-weight: 700; font-size: clamp(2.0rem, 4vw, 3.2rem); letter-spacing: -0.01em; line-height: 1.4; padding: 0.15em 0 0.25em; display: block; }
+  .masthead-title .subtitle { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.2rem; }
+  .masthead-right { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; color: var(--ink-light); text-align: right; line-height: 1.8; }
+  .masthead-tagline { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 0.92rem; color: var(--ink-mid); padding: 0.7rem 0 0.5rem; border-top: 1px solid var(--rule); margin-top: 0.5rem; text-align: center; }
+  .red-bar { height: 4px; background: var(--accent); margin: 0 -4rem; }
+
+  .update-banner { background: var(--ink); color: var(--paper); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.4rem 4rem; display: flex; justify-content: space-between; }
+
+  .nav-strip { background: var(--ink); padding: 0 4rem; display: flex; gap: 0; }
+  .nav-tab { background: transparent; border: none; color: rgba(255,255,255,0.55); font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.2rem; cursor: pointer; transition: all 0.15s; border-bottom: 3px solid transparent; }
+  .nav-tab:hover { color: rgba(255,255,255,0.9); }
+  .nav-tab.active { color: var(--paper); border-bottom-color: var(--accent); }
+
+  .page-wrap { max-width: 1400px; margin: 0 auto; padding: 2rem 4rem; }
+
+  .section-hed { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 1.2rem; }
+  .section-hed h2 { font-family: 'DM Serif Display', 'PingFang SC', serif; font-size: 1.4rem; white-space: nowrap; }
+  .section-hed .rule { flex: 1; height: 1px; background: var(--ink); }
+  .section-hed .tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); white-space: nowrap; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin-bottom: 2rem; animation: fadeUp 0.5s ease both; }
+  .kpi-cell { background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; }
+  .kpi-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.35rem; }
+  .kpi-value { font-family: 'DM Serif Display', serif; font-size: 1.5rem; line-height: 1.1; margin-bottom: 0.3rem; }
+  .kpi-chg { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.05em; }
+  .kpi-chg.up { color: var(--green); }
+  .kpi-chg.down { color: var(--red); }
+  .chg-badge { background: var(--ink); color: var(--paper); font-size: 0.55rem; padding: 0.05rem 0.3rem; border-radius: 2px; margin-left: 0.3rem; }
+  .chg-badge.up { background: var(--green); }
+  .chg-badge.down { background: var(--red); }
+
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+  .why-card { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1.4rem; }
+  .why-card.negative { border-left: 4px solid var(--red); }
+  .why-card.positive { border-left: 4px solid var(--green); }
+  .why-card-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; }
+  .why-card h4 { font-family: 'DM Serif Display', 'PingFang SC', serif; font-size: 1.05rem; margin-bottom: 0.7rem; line-height: 1.4; }
+  .why-card p { font-size: 0.84rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 0.6rem; }
+  .why-source { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--ink-light); margin-top: 0.7rem; border-top: 1px solid var(--rule); padding-top: 0.5rem; }
+  .why-source a { color: var(--accent2); text-decoration: none; }
+  .why-source a:hover { text-decoration: underline; }
+
+  .stat-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 2px; margin: 0.1rem; }
+  .stat-pill.green { background: rgba(30,107,69,0.12); color: var(--green); border: 1px solid rgba(30,107,69,0.25); }
+  .stat-pill.red { background: rgba(176,58,46,0.1); color: var(--red); border: 1px solid rgba(176,58,46,0.2); }
+  .stat-pill.gold { background: rgba(183,134,13,0.1); color: var(--gold); border: 1px solid rgba(183,134,13,0.2); }
+  .stat-pill.blue { background: rgba(26,82,118,0.1); color: var(--accent2); border: 1px solid rgba(26,82,118,0.2); }
+
+  .interp-box { background: white; color: var(--ink); border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1.8rem 2rem; margin-bottom: 2rem; }
+  .interp-box h3 { font-family: 'DM Serif Display', 'PingFang SC', serif; font-size: 1.1rem; margin-bottom: 1rem; color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; }
+  .interp-box p { font-size: 0.85rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 0.8rem; }
+  .interp-box p:last-child { margin-bottom: 0; }
+
+  /* 名词解释小框 */
+  .glossary-pill { display: inline-block; background: rgba(26,82,118,0.08); border: 1px dashed rgba(26,82,118,0.3); color: var(--accent2); font-size: 0.72rem; padding: 0.1rem 0.5rem; border-radius: 3px; cursor: default; position: relative; }
+  .glossary-pill:hover::after { content: attr(data-tip); position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); font-size: 0.65rem; padding: 0.4rem 0.6rem; border-radius: 4px; white-space: nowrap; z-index: 100; max-width: 220px; white-space: normal; text-align: left; line-height: 1.4; }
+
+  .table-section { overflow-x: auto; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  thead { background: var(--ink); color: var(--paper); }
+  thead th { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.6rem 0.8rem; text-align: right; }
+  thead th:first-child, thead th:nth-child(2) { text-align: left; }
+  tbody tr { border-bottom: 1px solid var(--rule); }
+  tbody tr:hover { background: var(--paper-warm); }
+  tbody td { padding: 0.55rem 0.8rem; text-align: right; }
+  tbody td:first-child { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; color: var(--ink-light); font-weight: 600; text-align: left; }
+  tbody td:nth-child(2) { text-align: left; font-size: 0.8rem; }
+  .cat-row td { background: rgba(13,17,23,0.04); font-weight: 700; font-size: 0.72rem; }
+  .up-val { color: var(--green); font-weight: 600; }
+  .dn-val { color: var(--red); font-weight: 600; }
+  .neut-val { color: var(--ink-light); }
+
+  .narrative-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .narr-card { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1.4rem; }
+  .narr-card h3 { font-family: 'DM Serif Display', 'PingFang SC', serif; font-size: 1rem; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+  .narr-card p, .narr-card li { font-size: 0.82rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 0.5rem; }
+  .narr-card ul { padding-left: 1.2rem; }
+  .narr-source { font-family: 'DM Mono', monospace; font-size: 0.55rem; color: var(--ink-light); margin-top: 0.8rem; border-top: 1px solid var(--rule); padding-top: 0.5rem; }
+  .narr-source a { color: var(--accent2); text-decoration: none; }
+
+  .mini-charts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .mini-chart-card { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1rem; }
+  .mini-chart-title { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.3rem; }
+  .mini-chart-val { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .mini-chart-val.up { color: var(--green); }
+  .mini-chart-val.down { color: var(--red); }
+  .sparkline { width: 100%; height: 40px; display: block; }
+
+  .global-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+  .global-card { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1.4rem; }
+  .global-card.highlight { border-left: 4px solid var(--gold); }
+  .global-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.4rem; }
+  .global-card h4 { font-family: 'DM Serif Display', 'PingFang SC', serif; font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
+  .global-card p { font-size: 0.82rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 0.5rem; }
+  .global-source { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--ink-light); margin-top: 0.6rem; border-top: 1px solid var(--rule); padding-top: 0.4rem; }
+  .global-source a { color: var(--accent2); text-decoration: none; }
+
+  .sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+  .source-group { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--accent2); border-radius: 6px; padding: 1.4rem; }
+  .source-group h4 { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--ink); }
+  .source-item { font-size: 0.78rem; color: var(--ink-mid); padding: 0.45rem 0.6rem 0.45rem 1.1rem; border-left: 2px solid var(--rule); margin-bottom: 0.4rem; line-height: 1.4; }
+  .source-item a { color: var(--accent2); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 0.68rem; }
+  .source-item a:hover { text-decoration: underline; }
+
+  /* 名词解释专栏 */
+  .glossary-box { background: white; border: 1px solid var(--rule); border-left: 4px solid var(--gold); border-radius: 6px; padding: 1.4rem; margin-bottom: 2rem; }
+  .glossary-box h4 { font-family: 'DM Serif Display', serif; font-size: 1rem; margin-bottom: 1rem; color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: 0.4rem; }
+  .glossary-item { font-size: 0.82rem; line-height: 1.7; color: var(--ink-mid); margin-bottom: 0.6rem; padding-bottom: 0.6rem; border-bottom: 1px dashed var(--rule); }
+  .glossary-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .glossary-term { font-weight: 700; color: var(--ink); }
+
+  footer { background: var(--ink); color: rgba(255,255,255,0.55); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 1rem 4rem; display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; }
+  footer strong { color: var(--paper); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .masthead, .page-wrap, .nav-strip, .update-banner, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .narrative-grid, .mini-charts { grid-template-columns: 1fr; }
+    .sources-grid { grid-template-columns: 1fr; }
+    .why-grid, .global-grid { grid-template-columns: 1fr; }
+    .red-bar { margin: 0 -1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 1rem 1rem 0; }
+    .masthead-inner { grid-template-columns: 1fr; gap: 0.3rem; text-align: center; }
+    .masthead-left, .masthead-right { display: none; }
+    .masthead-title h1 { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+    .masthead-tagline { font-size: 0.8rem; padding: 0.6rem 0; }
+    .red-bar { margin: 0 -1rem; }
+    .update-banner { flex-direction: column; gap: 0.2rem; text-align: center; padding: 0.5rem 1rem; font-size: 0.58rem; }
+    .page-wrap { padding: 1rem; }
+    footer { flex-direction: column; gap: 0.3rem; text-align: center; padding: 1rem; font-size: 0.65rem; }
+    .nav-strip { padding: 0; position: relative; }
+    .nav-hamburger { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; background: var(--ink); color: var(--paper); font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; cursor: pointer; user-select: none; }
+    .nav-hamburger-icon { font-size: 1.2rem; }
+    .nav-mobile-menu { display: none; flex-direction: column; background: var(--ink); border-top: 1px solid rgba(255,255,255,0.1); }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-tab { border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; text-align: left; font-size: 0.78rem; color: rgba(255,255,255,0.7); background: transparent; width: 100%; }
+    .nav-tab.active { background: var(--accent); color: var(--paper); }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .kpi-cell { padding: 0.8rem; }
+    .kpi-value { font-size: 1.3rem; }
+    .why-card, .global-card { padding: 1rem; }
+    .why-card h4 { font-size: 0.95rem; }
+    .why-card p, .global-card p { font-size: 0.8rem; }
+    .interp-box { padding: 1rem; }
+    .interp-box h3 { font-size: 0.9rem; }
+    .interp-box p { font-size: 0.82rem; }
+    .table-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 600px; font-size: 0.75rem; }
+    .mini-charts { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .sources-grid { grid-template-columns: 1fr; }
+    .section-hed h2 { font-size: 1.1rem; }
+    .stat-pill { font-size: 0.58rem; padding: 0.08rem 0.35rem; }
+  }
+  @media (max-width: 380px) {
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    .kpi-value { font-size: 1.1rem; }
+    .masthead-title h1 { font-size: 1.4rem; }
+    .mini-charts { grid-template-columns: 1fr; }
+  }
+  .nav-hamburger { display: none; }
+  .nav-mobile-menu { display: flex; flex-direction: row; flex-wrap: wrap; }
+  @media (max-width: 600px) {
+    .nav-hamburger { display: flex; }
+    .nav-mobile-menu { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部横幅 -->
+<div class="update-banner">
+  <span>下次更新：<span id="countdown">周六</span></span>
+  <span>数据截至周五收盘 · 每周更新</span>
+  <span>2026年2月27日当周</span>
+</div>
+
+<!-- 报头 -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <div>每周 · 周六</div>
+      <div>美国市场</div>
+    </div>
+    <div class="masthead-title">
+      <h1>资本市场周报</h1>
+      <div class="subtitle">跨资产市场解读 · 每周六更新</div>
+    </div>
+    <div class="masthead-right">
+      <div>2026年2月27日</div>
+      <div>周五收盘</div>
+    </div>
+  </div>
+  <div class="masthead-tagline">「通胀高烧未退、AI焦虑蔓延、地缘风险积聚。二月在迷雾中收场，市场仍在寻底。」</div>
+  <div class="red-bar"></div>
+</div>
+
+<!-- 导航 -->
+<nav class="nav-strip">
+  <div class="nav-hamburger" onclick="toggleMobileNav()" id="hamburger">
+    <span id="hamburger-label">☰ 本周概览</span>
+    <span class="nav-hamburger-icon" id="hamburger-icon">▾</span>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu">
+    <button class="nav-tab active" onclick="switchTab('dashboard', '本周概览', this)">本周概览</button>
+    <button class="nav-tab" onclick="switchTab('table', '完整数据表', this)">完整数据表</button>
+    <button class="nav-tab" onclick="switchTab('narrative', '市场深度解读', this)">市场深度解读</button>
+    <button class="nav-tab" onclick="switchTab('global', '全球大事件', this)">全球大事件</button>
+    <button class="nav-tab" onclick="switchTab('sources', '数据来源', this)">数据来源</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--                    本周概览 TAB                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-dashboard">
+<div class="page-wrap">
+
+  <!-- KPI行 -->
+  <div class="kpi-row">
+    <div class="kpi-cell">
+      <div class="kpi-label">标普500指数</div>
+      <div class="kpi-value">6,878.88</div>
+      <div class="kpi-chg down">▼ 本周 0.44% <span class="chg-badge up">年初至今 +0.49%</span></div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">纳斯达克指数</div>
+      <div class="kpi-value">22,668.21</div>
+      <div class="kpi-chg down">▼ 本周 0.95% <span class="chg-badge down">年初至今 −2.47%</span></div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">VIX 恐慌指数</div>
+      <div class="kpi-value">19.86</div>
+      <div class="kpi-chg up">▲ 本周 +4.03% <span class="chg-badge down">年初至今 +32.84%</span></div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">黄金（美元/盎司）</div>
+      <div class="kpi-value">$5,230.50</div>
+      <div class="kpi-chg up">▲ 本周 +2.94% <span class="chg-badge up">年初至今 +20.92%</span></div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">WTI 原油</div>
+      <div class="kpi-value">$67.02</div>
+      <div class="kpi-chg up">▲ 本周 +0.95% <span class="chg-badge up">年初至今 +16.72%</span></div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">比特币</div>
+      <div class="kpi-value">$64,952</div>
+      <div class="kpi-chg down">▼ 本周 4.49% <span class="chg-badge down">年初至今 −25.78%</span></div>
+    </div>
+  </div>
+
+  <!-- 本周综述 -->
+  <div class="section-hed" style="margin-top:0">
+    <h2>本周市场综述</h2>
+    <div class="rule"></div>
+    <div class="tag">跨资产解读 · 2026年2月27日</div>
+  </div>
+
+  <div class="interp-box">
+    <h3>一句话读懂本周市场 · 2026年2月23日至27日</h3>
+    <p><strong>本周最大冲击：</strong>周五公布的1月份<span class="glossary-pill" data-tip="生产者价格指数（PPI）：衡量工厂出厂价格的涨幅，是通货膨胀的早期信号">PPI（生产者物价指数）</span>大幅超出预期——总体指数环比涨0.5%（预期0.3%），核心指数环比更猛涨0.8%（预期仅0.3%）。这份数据相当于一盆冷水，让原本期待美联储降息的投资者彻底打消了幻想。标普500本周跌0.44%，纳斯达克跌0.95%，<span class="glossary-pill" data-tip="VIX：又称「恐慌指数」，数值越高代表市场越担忧、波动越大">VIX恐慌指数</span>盘中一度突破20。二月就此以惨淡收场——纳斯达克创下2025年3月以来最差月度表现，科技软件ETF（IGV）二月份单月跌近10%。</p>
+    <p>雪上加霜的是，「AI恐慌情绪」贯穿全周。周一，Anthropic发布Claude Code——一款可以自动完成许多原本由顾问公司负责的分析工作的AI工具——IBM单日重挫13%，埃森哲、CrowdStrike也跟着大跌。周三，英伟达公布的季报堪称完美（营收681亿美元，同比增73%），但股价在次日反而下跌超5%，这就是市场所说的「利好出尽即利空」。这一周以一个令人沮丧的矛盾作为结束：英伟达史上最强季报，依然救不了AI概念股。</p>
+    <p>黄金本周大涨2.94%，创下每盎司5,230美元的历史新高。三大引擎同时点火：PPI数据推高通胀预期（利好黄金保值功能）、美伊核谈判在日内瓦无果而终（地缘风险溢价支撑金价）、10年期美债收益率降至3.962%（实际利率下降对黄金有利）。与此同时，比特币跌4.49%至64,952美元，年初至今已跌逾25%。10年期美债收益率反而因为「增长担忧」压过通胀因素而下行，暗示市场正在担心经济滞胀——而这恰恰令美联储两难：不敢轻易降息，也不敢加息。</p>
+  </div>
+
+  <!-- 市场为何如此波动 -->
+  <div class="section-hed">
+    <h2>本周市场驱动因素</h2>
+    <div class="rule"></div>
+    <div class="tag">核心催化剂 · 2月23日至27日</div>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card negative">
+      <div class="why-card-label">📉 股市为何下跌？</div>
+      <h4>三重打击：通胀超预期 + AI焦虑 + 英伟达矛盾</h4>
+      <p>三股力量合流，将美股压低。<strong>第一击：</strong>周五公布的1月PPI大幅超出预期，进一步推迟了美联储降息的时间表。目前市场认为5月降息概率仅三成，最早要等到夏天。<strong>第二击：</strong>Anthropic于周一发布Claude Code，一款可以处理复杂商业分析工作的AI助手，直接令咨询和软件行业人心惶惶——IBM暴跌13%，微软跌约3%，CrowdStrike跌约10%。<strong>第三击：</strong>英伟达周三公布创纪录的季报（营收681亿美元，同比增73%），但股价周四不升反跌逾5%。投资者的逻辑是：科技巨头们砸下6,500亿美元购买AI算力，究竟能赚回多少钱？这个问题还没人能回答清楚。</p>
+      <p>二月最终以标普500年初至今勉强收红（+0.49%）、纳斯达克年初至今下跌2.47%作为结尾。</p>
+      <p>本周个股亮点：
+        <span class="stat-pill red">IBM −13%</span>
+        <span class="stat-pill red">英伟达 周四 −5%+</span>
+        <span class="stat-pill red">CrowdStrike −10%</span>
+        <span class="stat-pill red">CoreWeave −20%</span>
+        <span class="stat-pill green">戴尔 +21.8%</span>
+        <span class="stat-pill green">奈飞 +7%</span>
+      </p>
+      <div class="why-source">
+        数据来源：<a href="https://www.cnbc.com/2026/02/26/stock-market-today-live-updates.html" target="_blank">CNBC实时行情</a> ·
+        <a href="https://www.bls.gov/news.release/archives/ppi_02272026.htm" target="_blank">美国劳工部PPI报告</a> ·
+        <a href="https://fortune.com/2026/02/25/nvidia-nvda-earnings-q4-results-jensen-huang/" target="_blank">Fortune / 英伟达财报</a>
+      </div>
+    </div>
+
+    <div class="why-card negative">
+      <div class="why-card-label">🌡️ 通胀警报：2026年1月PPI</div>
+      <h4>核心生产者物价单月飙升0.8%，创近年最大单月涨幅</h4>
+      <p>美国劳工部于周五早8:30发布1月PPI数据。总体PPI环比涨0.5%（预期0.3%），核心PPI（剔除食品和能源后）环比暴涨0.8%——超出预期0.3%整整一倍以上，创2025年7月以来最大单月涨幅。按年同比计算，核心PPI升至3.6%（12月为3.3%）。</p>
+      <p>数据背后的关键：<strong>服务业价格</strong>是主要推手（环比涨0.8%），其中商业设备批发环节的利润率单月飙升14.4%——反映出部分行业正在趁市场不稳之际扩大利润空间。商品价格虽整体下跌（能源跌2.7%），但核心商品仍涨0.7%。</p>
+      <p>为什么这份数据特别重要？美联储最重视的通胀指标——<span class="glossary-pill" data-tip="PCE（个人消费支出物价指数）：美联储官方目标通胀指标，2%为目标值">PCE指数</span>中，医疗、金融服务等核心分项直接采用PPI数据计算。3月13日将公布1月PCE，市场预计数字将偏高，进一步推迟美联储降息时机。</p>
+      <p>当前通胀全景：<span class="stat-pill red">CPI 1月 同比+2.4%</span> <span class="stat-pill red">核心CPI +2.5%</span> <span class="stat-pill red">核心PCE 12月 +2.7%</span> <span class="stat-pill red">核心PPI 1月 +3.6%</span> — 四项指标全部超过美联储2%目标</p>
+      <div class="why-source">
+        数据来源：<a href="https://www.bls.gov/news.release/archives/ppi_02272026.htm" target="_blank">美国劳工部 PPI 1月2026</a> ·
+        <a href="https://www.bls.gov/cpi/" target="_blank">美国劳工部 CPI 1月2026</a> ·
+        <a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" target="_blank">美国经济分析局 PCE</a>
+      </div>
+    </div>
+
+    <div class="why-card positive">
+      <div class="why-card-label">🥇 黄金为何创历史新高？</div>
+      <h4>黄金涨至每盎司5,230美元——三大引擎齐发力</h4>
+      <p>黄金本周劲涨2.94%，创下每盎司5,230.50美元的历史新高，年初至今涨幅高达20.92%。三大因素共同推动了这一走势：</p>
+      <p><strong>① 通胀担忧：</strong>PPI大幅超预期，进一步强化了市场对美元购买力被侵蚀的担忧。当纸币可能越来越不值钱时，黄金的保值吸引力就越强。</p>
+      <p><strong>② 地缘风险：</strong>2月26日，美伊核谈判在日内瓦无果而终。美军目前在中东维持着数十年来最大规模的军事部署，霍尔木兹海峡紧张局势支撑油价和金价的风险溢价。</p>
+      <p><strong>③ 实际利率下降：</strong>10年期美债收益率跌至3.962%。债券利率越低，黄金（本身不产生利息）对投资者的吸引力相对越大。此外，全球央行持续增持黄金也形成了稳定的结构性买盘。</p>
+      <p><span class="stat-pill gold">黄金 本周 +2.94%</span> <span class="stat-pill gold">年初至今 +20.92%</span> <span class="stat-pill gold">历史最高 $5,230/盎司</span> <span class="stat-pill blue">10年国债收益率 3.962%</span></p>
+      <div class="why-source">
+        数据来源：<a href="https://finance.yahoo.com/quote/GC=F/" target="_blank">Yahoo Finance（黄金期货）</a> ·
+        <a href="https://www.cnbc.com/2026/02/27/us-iran-nuclear-talks-oil-middle-east.html" target="_blank">CNBC / 美伊谈判</a> ·
+        <a href="https://fred.stlouisfed.org/series/DGS10" target="_blank">FRED 10年期国债收益率</a>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-card-label">📊 就业与消费数据</div>
+      <h4>就业市场依然稳健，但消费者信心仍偏低</h4>
+      <p>截至2月21日当周，<span class="glossary-pill" data-tip="初请失业救济金人数：每周首次申请失业救济的人数，数字越低代表就业市场越健康">初请失业救济金人数</span>为21.2万，略低于预期的21.5万。持续申请失业救济人数降至183.3万——接近10个月低位。总体来看，就业市场处于「既不大量招人、也不大量裁员」的平衡状态，运作稳健。</p>
+      <p>2月美国消费者信心指数（美国会议委员会调查）小幅回升至91.2（1月为89.0），略有改善。但要注意：这份调查截止日期是2月17日，彼时PPI数据尚未公布，3月的数字可能转而走软。消费者在非必要支出上仍较为谨慎，餐厅和旅游消费计划有所降温。</p>
+      <p>住房市场方面，12月新房销售74.5万套（环比跌1.7%），平均售价53.26万美元（同比涨4.7%）。春季楼市有回暖迹象，但30年期房贷利率仍在6.8%附近高位，制约了购房意愿。</p>
+      <div class="why-source">
+        数据来源：<a href="https://fred.stlouisfed.org/series/ICSA" target="_blank">FRED 初请失业金</a> ·
+        <a href="https://www.conference-board.org/topics/consumer-confidence/" target="_blank">美国会议委员会消费者信心</a> ·
+        <a href="https://www.census.gov/construction/nrs/pdf/newressales.pdf" target="_blank">美国统计局新房销售</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 快照图表 -->
+  <div class="section-hed">
+    <h2>本周走势速览</h2>
+    <div class="rule"></div>
+    <div class="tag">周内变动趋势</div>
+  </div>
+  <div class="mini-charts">
+    <div class="mini-chart-card">
+      <div class="mini-chart-title">标普500 — 2月27日当周</div>
+      <div class="mini-chart-val down">6,878.88</div>
+      <svg class="sparkline" viewBox="0 0 200 40" preserveAspectRatio="none">
+        <polyline points="0,14 40,18 80,24 120,28 160,30 200,26" fill="none" stroke="#b03a2e" stroke-width="2"/>
+        <polyline points="0,14 40,18 80,24 120,28 160,30 200,26 200,40 0,40" fill="rgba(176,58,46,0.1)" stroke="none"/>
+      </svg>
+    </div>
+    <div class="mini-chart-card">
+      <div class="mini-chart-title">黄金（美元/盎司）— 2月27日当周</div>
+      <div class="mini-chart-val up">$5,230.50</div>
+      <svg class="sparkline" viewBox="0 0 200 40" preserveAspectRatio="none">
+        <polyline points="0,30 40,26 80,22 120,16 160,10 200,6" fill="none" stroke="#b7860d" stroke-width="2"/>
+        <polyline points="0,30 40,26 80,22 120,16 160,10 200,6 200,40 0,40" fill="rgba(183,134,13,0.1)" stroke="none"/>
+      </svg>
+    </div>
+    <div class="mini-chart-card">
+      <div class="mini-chart-title">VIX 恐慌指数 — 2月27日当周</div>
+      <div class="mini-chart-val down">19.86 ▲</div>
+      <svg class="sparkline" viewBox="0 0 200 40" preserveAspectRatio="none">
+        <polyline points="0,28 40,22 80,30 120,18 160,20 200,14" fill="none" stroke="#b03a2e" stroke-width="2"/>
+        <polyline points="0,28 40,22 80,30 120,18 160,20 200,14 200,40 0,40" fill="rgba(176,58,46,0.08)" stroke="none"/>
+      </svg>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+</div><!-- /tab-dashboard -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--                   完整数据表 TAB                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-table">
+<div class="page-wrap">
+  <div class="section-hed" style="margin-top:0">
+    <h2>美国资本市场完整数据表</h2>
+    <div class="rule"></div>
+    <div class="tag">数据截至 2026年2月27日收盘</div>
+  </div>
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>资产类别</th>
+          <th>指标</th>
+          <th>12/31 收盘</th>
+          <th>2/20 收盘</th>
+          <th>2/27 收盘</th>
+          <th>本周净变动</th>
+          <th>本周涨跌幅</th>
+          <th>年初至今净变动</th>
+          <th>年初至今涨跌幅</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row"><td>股票</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>标普500指数</td>
+          <td>6,845.50</td><td>6,909.51</td><td>6,878.88</td>
+          <td class="dn-val">−30.63</td><td class="dn-val">−0.44%</td>
+          <td class="up-val">+33.38</td><td class="up-val">+0.49%</td>
+        </tr>
+        <tr>
+          <td></td><td>纳斯达克综合指数</td>
+          <td>23,241.99</td><td>22,886.07</td><td>22,668.21</td>
+          <td class="dn-val">−217.86</td><td class="dn-val">−0.95%</td>
+          <td class="dn-val">−573.78</td><td class="dn-val">−2.47%</td>
+        </tr>
+        <tr class="cat-row"><td>波动性</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>VIX 恐慌指数</td>
+          <td>14.95</td><td>19.09</td><td>19.86</td>
+          <td class="up-val">+0.77</td><td class="up-val">+4.03%</td>
+          <td class="up-val">+4.91</td><td class="up-val">+32.84%</td>
+        </tr>
+        <tr class="cat-row"><td>利率</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>美国10年期国债收益率（%）</td>
+          <td>4.163%</td><td>4.086%</td><td>3.962%</td>
+          <td class="dn-val">−0.124</td><td class="dn-val">−3.03%</td>
+          <td class="dn-val">−0.201</td><td class="dn-val">−4.83%</td>
+        </tr>
+        <tr>
+          <td></td><td>3个月SOFR利率（%）</td>
+          <td>4.01064%</td><td>3.76062%</td><td>3.73371%</td>
+          <td class="dn-val">−0.02691</td><td class="dn-val">−0.72%</td>
+          <td class="dn-val">−0.27693</td><td class="dn-val">−6.90%</td>
+        </tr>
+        <tr class="cat-row"><td>信用利差</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>BBB级美国企业债利差（%）</td>
+          <td>1.01%</td><td>0.99%</td><td>1.03%</td>
+          <td class="up-val">+0.04</td><td class="up-val">+4.04%</td>
+          <td class="up-val">+0.02</td><td class="up-val">+1.98%</td>
+        </tr>
+        <tr>
+          <td></td><td>美国高收益债利差（%）</td>
+          <td>2.81%</td><td>2.88%</td><td>2.98%</td>
+          <td class="up-val">+0.10</td><td class="up-val">+3.47%</td>
+          <td class="up-val">+0.17</td><td class="up-val">+6.05%</td>
+        </tr>
+        <tr class="cat-row"><td>加密货币</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>比特币（美元）</td>
+          <td>87,508.83</td><td>68,005.42</td><td>64,952.60</td>
+          <td class="dn-val">−3,052.82</td><td class="dn-val">−4.49%</td>
+          <td class="dn-val">−22,556.23</td><td class="dn-val">−25.78%</td>
+        </tr>
+        <tr class="cat-row"><td>大宗商品</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>黄金（美元/盎司）</td>
+          <td>4,325.60</td><td>5,080.90</td><td>5,230.50</td>
+          <td class="up-val">+149.60</td><td class="up-val">+2.94%</td>
+          <td class="up-val">+904.90</td><td class="up-val">+20.92%</td>
+        </tr>
+        <tr>
+          <td></td><td>WTI原油（美元/桶）</td>
+          <td>57.42</td><td>66.39</td><td>67.02</td>
+          <td class="up-val">+0.63</td><td class="up-val">+0.95%</td>
+          <td class="up-val">+9.60</td><td class="up-val">+16.72%</td>
+        </tr>
+        <tr class="cat-row"><td>汇率</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td></td><td>欧元/美元</td>
+          <td>1.1747</td><td>1.1769</td><td>1.1803</td>
+          <td class="up-val">+0.0034</td><td class="up-val">+0.29%</td>
+          <td class="up-val">+0.0056</td><td class="up-val">+0.48%</td>
+        </tr>
+        <tr>
+          <td></td><td>美元/日元</td>
+          <td>156.413</td><td>155.16</td><td>156.035</td>
+          <td class="up-val">+0.875</td><td class="up-val">+0.56%</td>
+          <td class="dn-val">−0.378</td><td class="dn-val">−0.24%</td>
+        </tr>
+        <tr>
+          <td></td><td>美元/人民币</td>
+          <td>6.9961</td><td>6.9081</td><td>6.8574</td>
+          <td class="dn-val">−0.0507</td><td class="dn-val">−0.73%</td>
+          <td class="dn-val">−0.1387</td><td class="dn-val">−1.98%</td>
+        </tr>
+        <tr>
+          <td></td><td>瑞郎/美元</td>
+          <td>1.2631</td><td>1.2898</td><td>1.2933</td>
+          <td class="up-val">+0.0035</td><td class="up-val">+0.27%</td>
+          <td class="up-val">+0.0302</td><td class="up-val">+2.39%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink-light);margin-top:0.8rem;">年初至今变动以2025年12月31日收盘价为基准。信用利差数据截至最新可用日期（BBB：2/27；高收益OAS：2/26）。</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--                   市场深度解读 TAB                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-narrative">
+<div class="page-wrap">
+  <div class="section-hed" style="margin-top:0">
+    <h2>市场深度解读</h2>
+    <div class="rule"></div>
+    <div class="tag">2026年2月23日至27日当周</div>
+  </div>
+
+  <div class="narrative-grid">
+    <div class="narr-card">
+      <h3>股市：二月以下跌收场</h3>
+      <p>美国股市三大指数均以下跌收官。标普500本周跌0.44%至6,878.88点，年初至今仅微涨0.49%。科技股权重更高的纳斯达克跌0.95%至22,668.21点，年初至今已跌2.47%，创下2025年3月以来最差月度表现。</p>
+      <p>本周充满矛盾信号。周一，Anthropic发布Claude Code，一款能执行复杂商业分析任务的AI工具，市场担忧其会取代顾问公司的部分工作，IBM单日重挫13%。中段，市场情绪稍稳，转而聚焦英伟达财报。但周四，英伟达尽管公布了671亿美元的季度营收（同比暴增73%）并将下季度指引上调至约780亿美元，股价却逆势下跌超5%——这就是市场常说的「利好出尽即利空」，或称「英伟达悖论」。戴尔凭借强劲的AI服务器需求大涨21.8%，是科技板块少有的亮点。</p>
+      <p>周五，超预期的PPI数据给了市场最后一击，道指收跌521点（−1.05%）。支付公司Block（原Square）宣布裁员逾4,000人（约占员工总数一半），进一步加剧了AI冲击金融科技行业的担忧。值得关注的是，标普500等权重指数周四触及历史新高——说明此轮二月跌势主要集中在大型科技股，并非全面市场弱势。</p>
+      <div class="narr-source">数据来源：<a href="https://www.cnbc.com/2026/02/26/stock-market-today-live-updates.html" target="_blank">CNBC实时行情</a> · <a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank">嘉信理财每日更新</a> · <a href="https://finance.yahoo.com/news/stock-market-today-feb-20-221129656.html" target="_blank">雅虎财经</a></div>
+    </div>
+
+    <div class="narr-card">
+      <h3>通胀：一份数据打破所有预期</h3>
+      <p>本周最具影响力的宏观数据无疑是周五公布的1月PPI。总体PPI环比涨0.5%（预期0.3%），核心PPI（剔除食品和能源）更狂涨0.8%（预期仅0.3%）。这是2025年7月以来最大单月涨幅。按年同比，核心PPI从12月的3.3%升至3.6%。服务业价格是最主要驱动力（环比涨0.8%），其中商业设备批发利润率单月大涨14.4%。</p>
+      <p>这份数据远不只是一个标题数字。<span class="glossary-pill" data-tip="美联储官方首选通胀指标，目标值为2%">PCE指数</span>中的医疗保健、金融服务等核心分项，实际上直接采用PPI子分项来计算。因此，1月PPI的爆冷，很可能预示着3月13日将公布的1月PCE数据也将偏高，令美联储的降息之路再度推后。目前联邦基金目标利率区间维持在3.50%至3.75%。</p>
+      <p>完整通胀全景（各项指标均高于2%目标）：1月CPI（2月13日公布）：总体同比+2.4%，核心同比+2.5%；12月PCE（2月20日公布）：总体环比+0.4%，核心同比+2.7%。通胀至今没有明确回落迹象，美联储骑虎难下。</p>
+      <div class="narr-source">数据来源：<a href="https://www.bls.gov/news.release/archives/ppi_02272026.htm" target="_blank">美国劳工部 PPI 1月2026</a> · <a href="https://www.bls.gov/cpi/" target="_blank">CPI 1月2026</a> · <a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" target="_blank">BEA PCE 2月20日</a></div>
+    </div>
+
+    <div class="narr-card">
+      <h3>债券：收益率因增长担忧而意外下行</h3>
+      <p>在PPI数据如此强劲的情况下，常理上债券收益率应该上升（因为通胀加剧），但10年期美债收益率本周反而下跌了12.4个基点至3.962%，跌破4%这一重要心理关口。为什么？答案在于「增长担忧压倒通胀担忧」：4季度GDP仅增1.4%（预期2.5%），远低预期；消费者信心低迷；AI冲击威胁就业——市场开始担心经济放缓可能比通胀更危险。10年期利率是「长期经济前景」的晴雨表，下行表明市场对未来增长心存忧虑。</p>
+      <p><span class="glossary-pill" data-tip="SOFR：取代LIBOR的新型短期基准利率，反映美国隔夜拆借市场的实际成本">3个月SOFR利率</span>小幅降至3.73371%，反映市场对美联储最终将降息的预期，但短端利率仍受制于当前3.50%–3.75%的基准利率区间。信用利差小幅走阔：BBB级企业债利差扩大4个基点至1.03%，高收益债利差扩大10个基点至2.98%——绝对水平历史上仍属偏紧，但方向值得警惕。10年期TIPS（通胀保值债券）实际收益率的下行，则直接为黄金的历史新高提供了支撑。</p>
+      <div class="narr-source">数据来源：<a href="https://finance.yahoo.com/quote/%5ETNX/" target="_blank">雅虎财经 (^TNX)</a> · <a href="https://fred.stlouisfed.org/series/SOFR" target="_blank">FRED SOFR</a> · <a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2" target="_blank">FRED 高收益利差</a> · <a href="https://www.federalreserve.gov/monetarypolicy/openmarket.htm" target="_blank">美联储FOMC</a></div>
+    </div>
+
+    <div class="narr-card">
+      <h3>大宗商品与汇率：黄金创纪录，油价稳健</h3>
+      <p>黄金是本周最耀眼的资产，大涨2.94%至每盎司5,230.50美元——刷新历史纪录，年初至今涨幅达20.92%。这一涨势由三股力量合力推动：超预期PPI强化通胀预期（利好黄金作为「价值储存工具」的属性）、美伊地缘风险（日内瓦谈判2月26日无果而终，风险溢价支撑）、以及10年期实际利率下降（利率越低，不生息的黄金吸引力越大）。摩根大通预测2026年四季度黄金均价将达每盎司5,055美元。</p>
+      <p>WTI原油小涨0.95%至每桶67.02美元（年初至今+16.72%）。尽管美伊核谈判高度紧张，但由于双方在日内瓦达成了「继续谈判」的共识（下周维也纳技术层级磋商），风险溢价有所回落，油价涨幅因此较为温和。比特币跌4.49%至64,952美元，年初至今累计下跌25.78%，与风险资产的相关性减弱，反而更像是被市场规避风险的情绪直接打压。汇率方面，欧元/美元小涨0.29%（美元走弱助推），瑞郎/美元涨0.27%（避险资金流入瑞士法郎）。</p>
+      <div class="narr-source">数据来源：<a href="https://finance.yahoo.com/quote/GC=F/" target="_blank">雅虎财经（黄金）</a> · <a href="https://www.cnbc.com/2026/02/27/us-iran-nuclear-talks-oil-middle-east.html" target="_blank">CNBC 美伊谈判</a> · <a href="https://www.jpmorgan.com/insights/global-research/commodities/gold-prices" target="_blank">摩根大通黄金展望</a></div>
+    </div>
+  </div>
+
+  <!-- 关键经济数据背景 -->
+  <div class="section-hed">
+    <h2>关键经济数据一览</h2>
+    <div class="rule"></div>
+    <div class="tag">宏观背景 · 2026年2月</div>
+  </div>
+  <div class="interp-box">
+    <h3>宏观全景 — 2026年2月</h3>
+    <p><strong>ISM制造业PMI（2026年1月，2月2日公布）：</strong>从12月的47.9%大幅跃升至52.6%——时隔12个月重返扩张区间，创2022年以来最佳。<span class="glossary-pill" data-tip="采购经理人指数（PMI）：50以上代表扩张，50以下代表收缩。是衡量工业景气度的重要先行指标">新订单57.1%，生产55.9%</span>。但需注意：部分行业可能是在预期关税加征前提前备货，拉高了1月数据；实际景气度或没有表面数字那么强劲。</p>
+    <p><strong>初请失业救济金（2月21日当周）：</strong>21.2万人（上周21.7万），低于21.5万的预期；持续申请人数降至183.3万，接近10个月低点。就业市场总体健康，但要注意——如果AI引发的大规模裁员开始加速，这一数字可能在未来几个月快速攀升。</p>
+    <p><strong>消费者信心指数（2026年2月，美国会议委员会）：</strong>小幅回升至91.2（1月为89.0）。但与2024年11月峰值112.8相比，仍低了整整20多点。调查截止日期2月17日，彼时PPI数据尚未公布，因此3月数字受到的冲击尚未反映。消费者对餐厅和旅游的支出意愿有所降温，反映出对经济前景的谨慎态度。</p>
+    <p><strong>住房市场（2025年12月，美国统计局/住房和城市发展部）：</strong>新房销售74.5万套（折年化，环比降1.7%），均价53.26万美元（同比涨4.7%）。成屋销售环比涨5.1%（同比涨1.4%）。随着购房贷款申请量同比回升8%，春季楼市出现回暖苗头，但30年期房贷利率约6.8%的高位依然是制约购房需求的重要瓶颈。</p>
+  </div>
+
+  <!-- 专业名词快速解释 -->
+  <div class="section-hed">
+    <h2>专业名词速查</h2>
+    <div class="rule"></div>
+    <div class="tag">帮助读者理解报告中的常见术语</div>
+  </div>
+  <div class="glossary-box">
+    <h4>📖 本报常见名词解释</h4>
+    <div class="glossary-item">
+      <span class="glossary-term">PPI（生产者价格指数）：</span>衡量工厂出厂价格的涨跌，相当于通胀的「上游信号」。PPI涨，未来零售价往往也涨，因为厂商会把成本转嫁给消费者。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">CPI（消费者价格指数）：</span>我们日常买东西的价格变化，就是CPI。超市、房租、医疗……都在里面。是普通人最直接感受到的通胀指标。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">PCE（个人消费支出物价指数）：</span>美联储制定政策最看重的通胀指标。覆盖范围比CPI更广，被认为更能反映消费者实际支出行为。目标值2%。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">VIX（恐慌指数）：</span>衡量股市对未来30天波动的预期。数值越高，代表市场越紧张。20以下相对平稳，30以上通常意味着较大恐慌。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">国债收益率：</span>购买美国政府债券的年化回报率。收益率上升意味着借钱成本上升（对股市不利）；收益率下降通常意味着市场预期经济放缓或有降息预期。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">SOFR：</span>取代LIBOR的新型隔夜银行间拆借基准利率，反映银行之间互相拆借的实际成本，是全球最重要的短期利率锚点之一。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">信用利差（OAS）：</span>企业债相对于同期限国债的额外利率，反映市场对企业违约风险的定价。利差越宽，代表市场越担忧企业偿债能力。
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">美联储降息预期：</span>市场对美联储下次降低联邦基金目标利率的时间判断。降息对股市通常是利好，因为借贷成本下降、资金更容易流入股市。
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--                   全球大事件 TAB                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-global">
+<div class="page-wrap">
+  <div class="section-hed" style="margin-top:0">
+    <h2>全球重大事件</h2>
+    <div class="rule"></div>
+    <div class="tag">2026年2月23日至27日 · 对美国市场的传导影响</div>
+  </div>
+
+  <div class="global-grid">
+    <div class="global-card highlight">
+      <div class="global-tag">🌍 地缘政治 — 中东</div>
+      <h4>美伊日内瓦核谈判：无果而终，外交仍在继续</h4>
+      <p>第三轮美伊间接核谈判于2月26日在日内瓦举行，由阿曼外长巴德尔·布萨义迪居中斡旋。美方谈判代表团由特使史蒂夫·维科夫和贾里德·库什纳领衔，伊朗外长阿巴斯·阿拉格希率队与会。这轮长达6小时的会谈被伊朗形容为「历史上最长、最认真的一轮」，双方在协议框架上取得了「一定进展」。</p>
+      <p>但最终没有达成协议。<strong>分歧所在：</strong>美方要求销毁伊朗福尔多、纳坦兹、伊斯法罕三处核心核设施，将浓缩铀移交美国，并签署没有「日落条款」的永久性协议。伊朗拒绝转移铀储量，坚持保留浓缩铀能力。双方最终同意下周在维也纳举行技术层级磋商。目前，美军在中东的驻军规模是数十年来最大的。</p>
+      <p><strong>对市场的影响：</strong>油价因地缘风险上涨，但在双方表示「谈判将继续」的信号释出后有所回落。黄金则因避险需求和霍尔木兹海峡风险溢价大涨。一旦谈判破裂、局势升级，油价将面临较大上行压力。</p>
+      <div class="global-source">数据来源：<a href="https://www.cnbc.com/2026/02/27/us-iran-nuclear-talks-oil-middle-east.html" target="_blank">CNBC</a> · <a href="https://www.bloomberg.com/news/articles/2026-02-26/us-iran-to-hold-talks-at-technical-level-next-week-oman-says" target="_blank">彭博社</a> · <a href="https://www.npr.org/2026/02/26/g-s1-111595/u-s-iran-to-third-round-nuclear-talks" target="_blank">NPR/美联社</a></div>
+    </div>
+
+    <div class="global-card highlight">
+      <div class="global-tag">🤖 科技 — 企业AI</div>
+      <h4>AI进驻职场：Anthropic新工具引发「提效 vs. 裁员」的争议</h4>
+      <p>2月23日当周，Anthropic宣布大幅扩展旗下Claude AI平台的企业功能，推出可直接对接Excel、PowerPoint、谷歌Drive及金融数据平台的系列工具，将Claude定位为能够跨平台、跨系统执行多步骤任务的「AI同事」。这标志着AI代理技术（即能自主决策和行动的AI）正在快速进入企业日常工作流程。</p>
+      <p>正如《巴伦周刊》报道所指出的，这一发布揭示了大型AI开发商之间愈演愈烈的竞争——谁先把自动化嵌入企业核心工作流程，谁就占据先机。这对市场的影响，不是一次性的冲击，而是一个持续演变的重估过程：企业能否通过AI提升生产力、同时维持利润率，还是AI会侵蚀软件授权收入和服务业岗位？这个问题在二月全月推升了科技、软件和咨询行业的波动性。</p>
+      <p><strong>对市场的影响：</strong>引发了对企业未来支出结构、用工需求，以及咨询、金融和企业软件等行业利润可持续性的广泛不确定性和持续讨论。</p>
+      <div class="global-source">数据来源：<a href="https://www.barrons.com/articles/anthropic-ai-claude-event-today-e3e982c5" target="_blank">《巴伦周刊》— Anthropic AI Claude</a> · <a href="https://www.cnbc.com/2026/02/22/stock-market-today-live-updates.html" target="_blank">CNBC（2月23日）</a></div>
+    </div>
+
+    <div class="global-card">
+      <div class="global-tag">🏭 财报 — 科技</div>
+      <h4>英伟达2026财年Q4财报：史上最强季报，遭遇AI变现质疑</h4>
+      <p>英伟达于2月25日公布2026财年第四季度业绩，营收681亿美元（同比增73%），超出市场656亿美元的预期，下一季度指引约780亿美元。其中数据中心业务营收584亿美元，反映出科技巨头对AI基础设施的持续强烈需求。CEO黄仁勋表示，AI行业正步入「代理AI（Agentic AI）」阶段，算力需求将随AI系统愈发自主而进一步加速。</p>
+      <p>但尽管业绩全面超预期，英伟达股价在财报公布后下跌超5%，被普遍解读为「利好出尽即利空」。投资者的关注点已从「近期需求有多强」转向「这波AI投资能不能赚钱」——科技巨头Alphabet、亚马逊、Meta和微软合计砸下超6,000亿美元的AI资本支出，这些钱究竟能为整体经济带来多少真实增长？此外，美国对华出口限制让英伟达丧失了中国这一重要市场，为未来数据中心营收增长增加了不确定性。</p>
+      <p><strong>对市场的影响：</strong>市场的平淡反应清楚地表明，投资者正在用更高的标准审视AI投资回报——单靠算力扩张远远不够，需要看到真实的商业变现。</p>
+      <div class="global-source">数据来源：<a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026" target="_blank">英伟达官方IR — Q4 FY2026财报</a> · <a href="https://fortune.com/2026/02/25/nvidia-nvda-earnings-q4-results-jensen-huang/" target="_blank">《财富》杂志</a> · <a href="https://www.cnbc.com/2026/02/25/nvidia-nvda-earnings-report-q4-2026.html" target="_blank">CNBC</a></div>
+    </div>
+
+    <div class="global-card">
+      <div class="global-tag">🌐 贸易政策 — 关税</div>
+      <h4>最高法院裁决后的关税新格局：15%全球基准税率，欧盟强力反弹</h4>
+      <p>2月20日，美国最高法院裁定「解放日」关税（依据《国际紧急经济权力法》实施的一揽子对等关税）违宪。特朗普随即宣布以新的15%全球基准关税取而代之（较裁决后即时宣布的10%再度上调），即时生效，并警告试图「钻空子」的国家将面临「更高关税」。欧盟明确拒绝接受提价，称「协议就是协议」，要求华盛顿澄清法律依据。</p>
+      <p>关税的持续不确定性继续压制全球贸易前景。耶鲁大学预算实验室估计，新关税体系将在未来12个月内推高CPI约0.4至0.6个百分点。1月PPI中服装和工业品价格的上涨，提供了关税成本被转嫁至批发环节的首批直接证据。瑞银因关税和增长不确定性下调美股评级至「中性」，转而增持欧洲和新兴市场。</p>
+      <p><strong>对市场的影响：</strong>MSCI明晟非美股票指数年初至今涨幅高达+8%，而标普500几乎持平——美元走弱、非美估值更低，推动资金加速流出美国。关税令美联储政策更加棘手：商品通缩的力量正被关税驱动的商品提价所抵消。</p>
+      <div class="global-source">数据来源：<a href="https://finance.yahoo.com/news/live/stock-market-today-dow-drops-800-points-as-sp-500-nasdaq-slide-on-trump-tariff-fears-ai-scare-trade-210027026.html" target="_blank">雅虎财经</a> · <a href="https://www.bls.gov/news.release/archives/ppi_02272026.htm" target="_blank">美国劳工部 PPI 1月2026</a></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--                     数据来源 TAB                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-sources">
+<div class="page-wrap">
+  <div class="section-hed" style="margin-top:0">
+    <h2>数据来源</h2>
+    <div class="rule"></div>
+    <div class="tag">全部引用 · 2026年2月27日当周</div>
+  </div>
+
+  <div class="sources-grid">
+    <div class="source-group">
+      <h4>① 市场行情数据 — 雅虎财经 / FRED</h4>
+      <div class="source-item"><strong>标普500：</strong> <a href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank">finance.yahoo.com (^GSPC)</a></div>
+      <div class="source-item"><strong>纳斯达克：</strong> <a href="https://finance.yahoo.com/quote/%5EIXIC/" target="_blank">finance.yahoo.com (^IXIC)</a></div>
+      <div class="source-item"><strong>VIX：</strong> <a href="https://finance.yahoo.com/quote/%5EVIX/" target="_blank">finance.yahoo.com (^VIX)</a></div>
+      <div class="source-item"><strong>10年期国债 (^TNX)：</strong> <a href="https://finance.yahoo.com/quote/%5ETNX/history/" target="_blank">finance.yahoo.com/quote/^TNX</a></div>
+      <div class="source-item"><strong>3个月SOFR平均值：</strong> <a href="https://www.newyorkfed.org/markets/reference-rates/sofr-averages-and-index" target="_blank">纽约联储 — SOFR均值与指数数据</a></div>
+      <div class="source-item"><strong>BBB级利差：</strong> <a href="https://fred.stlouisfed.org/series/BAMLC0A4CBBB" target="_blank">FRED BAMLC0A4CBBB</a></div>
+      <div class="source-item"><strong>高收益债利差：</strong> <a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2" target="_blank">FRED BAMLH0A0HYM2</a></div>
+      <div class="source-item"><strong>黄金 (GC=F)：</strong> <a href="https://finance.yahoo.com/quote/GC=F/" target="_blank">finance.yahoo.com/quote/GC=F</a></div>
+      <div class="source-item"><strong>WTI原油 (CL=F)：</strong> <a href="https://finance.yahoo.com/quote/CL=F/" target="_blank">finance.yahoo.com/quote/CL=F</a></div>
+      <div class="source-item"><strong>比特币 (BTC-USD)：</strong> <a href="https://finance.yahoo.com/quote/BTC-USD/" target="_blank">finance.yahoo.com/quote/BTC-USD</a></div>
+    </div>
+
+    <div class="source-group">
+      <h4>② 经济数据 — 美国劳工部/经济分析局/美联储</h4>
+      <div class="source-item"><strong>PPI 1月2026（2月27日公布）：</strong> <a href="https://www.bls.gov/news.release/archives/ppi_02272026.htm" target="_blank">bls.gov/news.release/ppi</a> — 总体环比+0.5%，核心环比+0.8%</div>
+      <div class="source-item"><strong>CPI 1月2026（2月13日公布）：</strong> <a href="https://www.bls.gov/cpi/" target="_blank">bls.gov/cpi</a> — 总体环比+0.2% / 同比+2.4%；核心同比+2.5%</div>
+      <div class="source-item"><strong>PCE 12月2025（2月20日公布）：</strong> <a href="https://www.bea.gov/data/personal-consumption-expenditures-price-index" target="_blank">bea.gov/data/pce-price-index</a> — 核心同比+2.7%；下次发布3月13日</div>
+      <div class="source-item"><strong>初请失业金（2月21日当周）：</strong> <a href="https://fred.stlouisfed.org/series/ICSA" target="_blank">FRED ICSA</a> — 21.2万；2月26日发布</div>
+      <div class="source-item"><strong>新房销售 12月2025：</strong> <a href="https://www.census.gov/construction/nrs/pdf/newressales.pdf" target="_blank">census.gov/construction/nrs</a> — 74.5万套（折年化，2月20日发布）</div>
+      <div class="source-item"><strong>美联储FOMC / 基准利率：</strong> <a href="https://www.federalreserve.gov/monetarypolicy/openmarket.htm" target="_blank">federalreserve.gov</a> — 3.50%–3.75%；下次PCE 3月13日；FOMC 3月17–18日</div>
+      <div class="source-item"><strong>H.15 选定利率：</strong> <a href="https://www.federalreserve.gov/releases/h15/" target="_blank">federalreserve.gov/releases/h15</a></div>
+    </div>
+
+    <div class="source-group">
+      <h4>③ 经济指标 — ISM / 会议委员会 / 其他</h4>
+      <div class="source-item"><strong>ISM制造业PMI 2026年1月（52.6%）：</strong> <a href="https://www.ismworld.org" target="_blank">ismworld.org</a> — 2月2日发布；2月PMI将于3月2日公布</div>
+      <div class="source-item"><strong>会议委员会消费者信心 2月2026（91.2）：</strong> <a href="https://www.conference-board.org/topics/consumer-confidence/" target="_blank">conference-board.org</a></div>
+      <div class="source-item"><strong>新闻与分析 — 华尔街日报：</strong> <a href="https://www.wsj.com/market-data" target="_blank">wsj.com/market-data</a></div>
+      <div class="source-item"><strong>MarketWatch：</strong> <a href="https://www.marketwatch.com/markets" target="_blank">marketwatch.com/markets</a></div>
+      <div class="source-item"><strong>彭博社：</strong> <a href="https://www.bloomberg.com/markets" target="_blank">bloomberg.com/markets</a></div>
+      <div class="source-item"><strong>CNBC：</strong> <a href="https://www.cnbc.com/markets/" target="_blank">cnbc.com/markets</a></div>
+      <div class="source-item"><strong>嘉信理财每日市场更新：</strong> <a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank">schwab.com</a></div>
+      <div class="source-item"><strong>FRED 圣路易斯联储经济研究数据库：</strong> <a href="https://fred.stlouisfed.org" target="_blank">fred.stlouisfed.org</a></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 页脚 -->
+<footer>
+  <span>资本市场周报 · 2026年2月27日当周</span>
+  <span><strong>仅供学习参考</strong> · 不构成投资建议</span>
+  <span>数据来源：美国劳工部 · 美国经济分析局 · 美联储 · FRED · 雅虎财经 · 会议委员会 · ISM</span>
+</footer>
+
+<script>
+  function switchTab(name, label, el) {
+    document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(e => e.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    if (el) el.classList.add('active');
+    const lbl = document.getElementById('hamburger-label');
+    if (lbl) lbl.textContent = '☰ ' + (label || name.toUpperCase());
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.remove('open');
+    const icon = document.getElementById('hamburger-icon');
+    if (icon) icon.textContent = '▾';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMobileNav() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+    if (menu.classList.toggle('open')) {
+      icon.textContent = '▴';
+    } else {
+      icon.textContent = '▾';
+    }
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const day = now.getDay();
+    const daysUntilSat = day === 6 ? 0 : 6 - day;
+    const nextSat = new Date(now);
+    nextSat.setDate(now.getDate() + daysUntilSat);
+    nextSat.setHours(8, 0, 0, 0);
+    const diff = nextSat - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').textContent = '今日更新';
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const d = Math.floor(h / 24);
+    if (d > 0) document.getElementById('countdown').textContent = `${d}天 ${h % 24}小时后`;
+    else document.getElementById('countdown').textContent = `${h}小时 ${m}分后`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>
+</body>
+</html>
